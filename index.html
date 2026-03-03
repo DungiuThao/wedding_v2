@@ -1,119 +1,323 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Đặng Trung Dũng & Nguyễn Phương Thảo</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--red:#8B1A1A;--red2:#B22222;--redd:#5C0F0F;--cream:#FDF8F2;--white:#FFFFFF;--gold:#C9A84C;--gold2:#E8D48B}
-html,body{min-height:100%;background:var(--cream);color:var(--redd);font-family:'Lora',serif;overflow-x:hidden}
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem 2rem;background:linear-gradient(170deg,var(--redd) 0%,var(--red) 45%,var(--red2) 75%,#6B0F0F 100%);overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(232,212,139,.18) 0%,transparent 65%);pointer-events:none}
-.frame{position:absolute;inset:20px;border:1px solid rgba(232,212,139,.3);pointer-events:none}
-.frame::before{content:'';position:absolute;inset:5px;border:1px solid rgba(232,212,139,.15)}
-.fc{position:absolute;width:30px;height:30px;border-color:rgba(232,212,139,.55)}
+:root{
+  --sky:#4BB3E8;
+  --sky2:#6EC6F0;
+  --sky3:#2A8FBF;
+  --white:#FFFFFF;
+  --offwhite:#F0F9FF;
+  --text:#1A5C80;
+  --textd:#0D3D57;
+}
+html,body{min-height:100%;background:var(--offwhite);color:var(--text);font-family:'Lora',serif;overflow-x:hidden}
+
+/* ═══ HERO – bầu trời xanh ═══ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:3rem 1.5rem 2rem;
+  background:linear-gradient(180deg, #87CEEB 0%, #4BB3E8 40%, #2A8FBF 100%);
+  overflow:hidden;
+}
+
+/* ─ Mây SVG animated ─ */
+.cloud-layer{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none}
+.cloud{position:absolute;animation:driftCloud linear infinite}
+@keyframes driftCloud{
+  from{transform:translateX(-220px)}
+  to{transform:translateX(calc(100vw + 220px))}
+}
+
+/* ─ Khung viền trắng ─ */
+.frame{position:absolute;inset:18px;border:1.5px solid rgba(255,255,255,.45);pointer-events:none}
+.frame::before{content:'';position:absolute;inset:5px;border:1px solid rgba(255,255,255,.22)}
+.fc{position:absolute;width:28px;height:28px;border-color:rgba(255,255,255,.7)}
 .fc.tl{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid}
 .fc.tr{top:-1px;right:-1px;border-top:2px solid;border-right:2px solid}
 .fc.bl{bottom:-1px;left:-1px;border-bottom:2px solid;border-left:2px solid}
 .fc.br{bottom:-1px;right:-1px;border-bottom:2px solid;border-right:2px solid}
-.hi{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
-.lbl{font-family:'Lora',serif;font-size:clamp(.72rem,1.8vw,.88rem);letter-spacing:.28em;color:rgba(232,212,139,.8);text-transform:uppercase;font-style:italic;opacity:0;animation:fu .9s .3s ease forwards}
-.gl{width:160px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,212,139,.7),transparent);margin:1rem auto;opacity:0;animation:fu .8s .55s ease forwards}
-.names{font-family:'Great Vibes',cursive;font-size:clamp(3.2rem,11vw,8rem);line-height:1.15;color:var(--white);text-shadow:0 2px 30px rgba(0,0,0,.4),0 0 60px rgba(232,212,139,.2);opacity:0;animation:fu 1.1s .7s ease forwards}
-.amp{display:block;font-size:clamp(2rem,6vw,4.8rem);color:rgba(232,212,139,.9);margin:-.35em 0}
-.date{margin-top:1.6rem;font-family:'Lora',serif;font-size:clamp(.72rem,1.8vw,.88rem);letter-spacing:.32em;color:rgba(232,212,139,.85);text-transform:uppercase;opacity:0;animation:fu .9s 1s ease forwards}
-.scallop{width:100%;overflow:hidden;line-height:0;background:var(--cream)}
-.scallop svg{display:block;width:100%}
-.stitle{text-align:center;padding:1.6rem 1rem .6rem;font-family:'Playfair Display',serif;font-size:clamp(.75rem,2vw,.95rem);letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-style:italic}
+
+/* ─ Content ─ */
+.hi{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.lbl{font-family:'Lora',serif;font-size:clamp(.72rem,1.8vw,.88rem);letter-spacing:.32em;color:rgba(255,255,255,.92);text-transform:uppercase;font-style:italic;opacity:0;animation:fu .9s .3s ease forwards}
+.gl{width:150px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);margin:1rem auto;opacity:0;animation:fu .8s .55s ease forwards}
+.names{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(3.2rem,11vw,8rem);
+  line-height:1.15;
+  color:var(--white);
+  /* KHÔNG đổ bóng */
+  opacity:0;animation:fu 1.1s .7s ease forwards;
+}
+.amp{display:block;font-size:clamp(2rem,6vw,5rem);color:rgba(255,255,255,.82);margin:-.35em 0}
+.date{margin-top:1.6rem;font-family:'Lora',serif;font-size:clamp(.72rem,1.8vw,.88rem);letter-spacing:.32em;color:rgba(255,255,255,.88);text-transform:uppercase;opacity:0;animation:fu .9s 1s ease forwards}
+
+/* bird silhouette */
+.birds{position:absolute;top:12%;left:0;width:100%;pointer-events:none;z-index:1}
+
+/* ═══ WAVE ═══ */
+.wave-wrap{background:var(--offwhite);line-height:0}
+.wave-wrap svg{display:block;width:100%}
+
+/* ═══ CARDS ═══ */
+.wsection{background:var(--white);padding:0 0 2.5rem}
+.stitle{
+  text-align:center;padding:1.8rem 1rem .7rem;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.75rem,2vw,.95rem);
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sky3);font-style:italic;
+}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;width:min(92%,500px);margin:0 auto}
 @media(max-width:400px){.cards{grid-template-columns:1fr}}
-.card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;padding:1.8rem 1rem 1.5rem;background:var(--white);border:1px solid rgba(139,26,26,.12);border-radius:3px;text-decoration:none;color:var(--redd);overflow:hidden;transition:transform .35s,box-shadow .35s;opacity:0;box-shadow:0 2px 12px rgba(139,26,26,.06)}
+
+.card{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;
+  padding:1.8rem 1rem 1.6rem;
+  background:var(--offwhite);
+  border:1.5px solid rgba(75,179,232,.2);
+  border-radius:12px;
+  text-decoration:none;color:var(--textd);
+  overflow:hidden;
+  transition:transform .35s,border-color .35s,background .35s;
+  opacity:0;
+}
 .card:nth-child(1){animation:fu .8s 1.3s ease forwards}
 .card:nth-child(2){animation:fu .8s 1.5s ease forwards}
 .card:nth-child(3){animation:fu .8s 1.7s ease forwards}
 .card:nth-child(4){animation:fu .8s 1.9s ease forwards}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--redd),var(--red2),var(--redd));transform:scaleX(0);transform-origin:center;transition:transform .4s ease}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--sky);
+  background:rgba(75,179,232,.06);
+}
+/* top bar */
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky2),var(--sky),var(--sky2));transform:scaleX(0);transform-origin:center;transition:transform .4s}
 .card:hover::before{transform:scaleX(1)}
-.card:hover{transform:translateY(-5px);box-shadow:0 8px 30px rgba(139,26,26,.16)}
+
 .ci{font-size:2rem}
-.cl{font-family:'Playfair Display',serif;font-size:clamp(.68rem,1.6vw,.78rem);letter-spacing:.16em;text-transform:uppercase;color:var(--red);text-align:center;font-weight:600}
-.cd{font-size:clamp(.8rem,2vw,.88rem);font-style:italic;color:rgba(92,15,15,.55);text-align:center;line-height:1.4}
-.soon{font-family:'Lora',serif;font-size:.62rem;font-style:italic;color:rgba(139,26,26,.5);background:rgba(139,26,26,.06);border:1px solid rgba(139,26,26,.15);padding:.15em .7em;border-radius:20px}
-.wfooter{background:var(--redd);text-align:center;padding:2rem 1rem 2.5rem;color:rgba(232,212,139,.5);font-family:'Lora',serif;font-size:.72rem;letter-spacing:.2em;font-style:italic;opacity:0;animation:fu .8s 2.1s ease forwards}
-#mbtn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:50px;height:50px;border-radius:50%;border:2px solid rgba(139,26,26,.35);background:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--red);transition:all .3s;box-shadow:0 3px 18px rgba(139,26,26,.18)}
-#mbtn:hover{transform:scale(1.1)}
-#mbtn.on{background:var(--red);color:var(--white)}
-#mbtn.on::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:1.5px solid rgba(139,26,26,.3);animation:ring 2s ease-out infinite}
+.cl{font-family:'Playfair Display',serif;font-size:clamp(.68rem,1.6vw,.78rem);letter-spacing:.16em;text-transform:uppercase;color:var(--sky3);font-weight:600;text-align:center}
+.cd{font-size:clamp(.8rem,2vw,.88rem);font-style:italic;color:rgba(26,92,128,.55);text-align:center;line-height:1.4}
+.soon{font-family:'Lora',serif;font-size:.62rem;font-style:italic;color:rgba(75,179,232,.7);background:rgba(75,179,232,.08);border:1px solid rgba(75,179,232,.25);padding:.15em .7em;border-radius:20px}
+
+/* ═══ FOOTER ═══ */
+.wfooter{
+  background:linear-gradient(135deg,#2A8FBF,#4BB3E8);
+  text-align:center;padding:2rem 1rem 2.5rem;
+  color:rgba(255,255,255,.7);
+  font-family:'Lora',serif;font-size:.75rem;letter-spacing:.2em;font-style:italic;
+  opacity:0;animation:fu .8s 2.1s ease forwards;
+}
+
+/* ═══ MUSIC BTN ═══ */
+#mbtn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:50px;height:50px;border-radius:50%;border:2px solid rgba(75,179,232,.5);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--sky);transition:all .3s}
+#mbtn:hover{transform:scale(1.1);border-color:var(--sky)}
+#mbtn.on{background:var(--sky);color:var(--white)}
+#mbtn.on::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:1.5px solid rgba(75,179,232,.3);animation:ring 2s ease-out infinite}
 @keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.45);opacity:0}}
-#mtip{position:fixed;bottom:1.4rem;right:4.8rem;z-index:100;background:var(--redd);border:1px solid rgba(232,212,139,.25);padding:.45rem .9rem;border-radius:4px;font-family:'Lora',serif;font-size:.82rem;font-style:italic;color:rgba(232,212,139,.9);white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .4s,transform .4s;pointer-events:none}
+#mtip{position:fixed;bottom:1.4rem;right:4.8rem;z-index:100;background:var(--textd);border:1px solid rgba(75,179,232,.3);padding:.45rem .9rem;border-radius:6px;font-family:'Lora',serif;font-size:.82rem;font-style:italic;color:rgba(255,255,255,.9);white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .4s,transform .4s;pointer-events:none}
 #mtip.show{opacity:1;transform:translateX(0)}
-.petal{position:fixed;top:-20px;pointer-events:none;z-index:50;opacity:0;animation:fall linear infinite}
-@keyframes fall{0%{opacity:0;transform:translateY(0) rotate(0deg)}5%{opacity:.7}90%{opacity:.3}100%{opacity:0;transform:translateY(105vh) rotate(700deg)}}
+
+/* ═══ HOA RƠI ═══ */
+.flower{position:fixed;top:-60px;pointer-events:none;z-index:50;animation:flowerFall linear infinite}
+@keyframes flowerFall{
+  0%  {opacity:0;transform:translateY(0) rotate(0deg) scale(1)}
+  5%  {opacity:1}
+  50% {transform:translateY(50vh) rotate(180deg) translateX(30px) scale(.9)}
+  90% {opacity:.6}
+  100%{opacity:0;transform:translateY(108vh) rotate(360deg) translateX(-20px) scale(.7)}
+}
+
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
+
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="frame"><div class="fc tl"></div><div class="fc tr"></div><div class="fc bl"></div><div class="fc br"></div></div>
+  <div class="frame">
+    <div class="fc tl"></div><div class="fc tr"></div>
+    <div class="fc bl"></div><div class="fc br"></div>
+  </div>
+
+  <!-- Mây SVG -->
+  <div class="cloud-layer" id="cloudLayer"></div>
+
+  <!-- Chim bay -->
+  <svg class="birds" viewBox="0 0 800 40" height="40" style="opacity:.5">
+    <path d="M60 20 Q65 13 70 20" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M75 15 Q80 8 85 15" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M200 25 Q206 17 212 25" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M350 10 Q356 3 362 10" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M360 18 Q366 11 372 18" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M600 22 Q606 14 612 22" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M700 8 Q705 1 710 8" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+
   <div class="hi">
     <p class="lbl">Trân trọng kính mời</p>
     <div class="gl"></div>
-    <h1 class="names">Trung Dũng<span class="amp">&amp;</span>Phương Thảo</h1>
+    <h1 class="names">
+      Trung Dũng
+      <span class="amp">&amp;</span>
+      Phương Thảo
+    </h1>
     <p class="date">Ngày trọng đại · 2026</p>
-    <svg style="margin-top:1.8rem;display:block;opacity:0;animation:fu .9s 1.1s ease forwards" width="280" height="22" viewBox="0 0 280 22">
-      <line x1="0" y1="11" x2="95" y2="11" stroke="rgba(232,212,139,.5)" stroke-width=".8"/>
-      <circle cx="104" cy="11" r="2" fill="rgba(232,212,139,.55)"/>
-      <circle cx="115" cy="11" r="1.2" fill="rgba(232,212,139,.35)"/>
-      <path d="M124 11L140 3L156 11L140 19Z" fill="none" stroke="rgba(232,212,139,.65)" stroke-width="1.1"/>
-      <circle cx="165" cy="11" r="1.2" fill="rgba(232,212,139,.35)"/>
-      <circle cx="176" cy="11" r="2" fill="rgba(232,212,139,.55)"/>
-      <line x1="185" y1="11" x2="280" y2="11" stroke="rgba(232,212,139,.5)" stroke-width=".8"/>
+    <svg style="margin-top:1.8rem;display:block;opacity:0;animation:fu .9s 1.1s ease forwards" width="260" height="20" viewBox="0 0 260 20">
+      <line x1="0" y1="10" x2="88" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".8"/>
+      <circle cx="96" cy="10" r="2" fill="rgba(255,255,255,.55)"/>
+      <circle cx="106" cy="10" r="1.2" fill="rgba(255,255,255,.38)"/>
+      <path d="M115 10L130 2L145 10L130 18Z" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.1"/>
+      <circle cx="154" cy="10" r="1.2" fill="rgba(255,255,255,.38)"/>
+      <circle cx="164" cy="10" r="2" fill="rgba(255,255,255,.55)"/>
+      <line x1="172" y1="10" x2="260" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".8"/>
     </svg>
   </div>
 </section>
-<div class="scallop">
-  <svg viewBox="0 0 1200 60" preserveAspectRatio="none" height="60">
-    <path d="M0,0 C150,60 350,60 600,30 C850,0 1050,60 1200,30 L1200,0 Z" fill="#8B1A1A"/>
+
+<!-- ═══ WAVE ═══ -->
+<div class="wave-wrap">
+  <svg viewBox="0 0 1200 70" preserveAspectRatio="none" height="70">
+    <path d="M0,0 C200,70 400,0 600,40 C800,80 1000,10 1200,50 L1200,0 Z" fill="#4BB3E8"/>
+    <path d="M0,20 C180,80 380,10 600,55 C820,100 1020,15 1200,45 L1200,0 L0,0Z" fill="#87CEEB" opacity=".35"/>
   </svg>
 </div>
-<div style="background:var(--cream);padding:0 0 2rem">
+
+<!-- ═══ CARDS ═══ -->
+<div class="wsection">
   <p class="stitle">Dành cho bạn yêu</p>
   <div class="cards">
-    <a class="card" href="THAY_LINK_THIEP_CUOI" target="_blank">
-      <div class="ci">💌</div><div class="cl">Thiệp Cưới</div>
+    <a class="card" href="THAY_LINK_THIEP_CUOI" target="_blank" rel="noopener">
+      <div class="ci">💌</div>
+      <div class="cl">Thiệp Cưới</div>
       <div class="cd">Xem thiệp mời online của chúng tôi</div>
     </a>
-    <a class="card" href="THAY_LINK_ALBUM" target="_blank">
-      <div class="ci">📸</div><div class="cl">Album Ảnh</div>
+    <a class="card" href="THAY_LINK_ALBUM" target="_blank" rel="noopener">
+      <div class="ci">📸</div>
+      <div class="cl">Album Ảnh</div>
       <div class="cd">Hành trình yêu thương của chúng tôi</div>
     </a>
     <a class="card" href="#" onclick="return false;" style="cursor:default;">
-      <div class="ci">🎞️</div><div class="cl">Photobooth</div>
+      <div class="ci">🎞️</div>
+      <div class="cl">Photobooth</div>
       <div class="cd">Ảnh chụp tại tiệc cưới</div>
       <span class="soon">Sắp ra mắt</span>
     </a>
-    <a class="card" href="THAY_LINK_DRIVE" target="_blank">
-      <div class="ci">☁️</div><div class="cl">Gửi Ảnh</div>
+    <a class="card" href="THAY_LINK_DRIVE" target="_blank" rel="noopener">
+      <div class="ci">☁️</div>
+      <div class="cl">Gửi Ảnh</div>
       <div class="cd">Chia sẻ kỷ niệm của bạn với chúng tôi</div>
     </a>
   </div>
 </div>
-<footer class="wfooter">Đặng Trung Dũng &amp; Nguyễn Phương Thảo · Mãi mãi bên nhau</footer>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="wfooter">
+  Đặng Trung Dũng &amp; Nguyễn Phương Thảo · Mãi mãi bên nhau
+</footer>
+
+<!-- ═══ MUSIC ═══ -->
 <div id="mbtn"><span id="mnote">♪</span></div>
 <div id="mtip">Nhấn để bật / tắt nhạc</div>
 <audio id="bgm" loop>
   <source src="wedding.mp3" type="audio/mpeg">
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
+
 <script>
-const sym=['🌹','✿','❀','·','✦','♡'];
-for(let i=0;i<16;i++){
-  const el=document.createElement('div');el.className='petal';
-  el.textContent=sym[Math.floor(Math.random()*sym.length)];
-  el.style.cssText=`left:${Math.random()*100}vw;font-size:${.4+Math.random()*.6}rem;animation-duration:${9+Math.random()*13}s;animation-delay:${Math.random()*18}s`;
+// ══ MÂY HOẠT HÌNH ══
+function makeSVGCloud(w,h){
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  s.setAttribute('width',w);s.setAttribute('height',h);
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.innerHTML=`
+    <ellipse cx="${w*.5}" cy="${h*.72}" rx="${w*.42}" ry="${h*.38}" fill="white" opacity=".92"/>
+    <ellipse cx="${w*.32}" cy="${h*.62}" rx="${w*.28}" ry="${h*.32}" fill="white" opacity=".88"/>
+    <ellipse cx="${w*.68}" cy="${h*.58}" rx="${w*.24}" ry="${h*.28}" fill="white" opacity=".85"/>
+    <ellipse cx="${w*.5}" cy="${h*.5}" rx="${w*.32}" ry="${h*.28}" fill="white"/>
+    <ellipse cx="${w*.5}" cy="${h*.72}" rx="${w*.44}" ry="${h*.3}" fill="white"/>
+  `;
+  s.appendChild(g);return s;
+}
+
+const cloudLayer=document.getElementById('cloudLayer');
+const cloudData=[
+  {w:180,h:80, top:'8%',  dur:28, delay:0},
+  {w:140,h:65, top:'15%', dur:35, delay:-10},
+  {w:200,h:90, top:'5%',  dur:22, delay:-6},
+  {w:120,h:55, top:'25%', dur:40, delay:-18},
+  {w:160,h:72, top:'12%', dur:30, delay:-24},
+  {w:100,h:48, top:'20%', dur:45, delay:-33},
+  {w:220,h:95, top:'3%',  dur:25, delay:-14},
+];
+cloudData.forEach(c=>{
+  const wrap=document.createElement('div');
+  wrap.className='cloud';
+  wrap.style.cssText=`top:${c.top};animation-duration:${c.dur}s;animation-delay:${c.delay}s;opacity:${.7+Math.random()*.25}`;
+  wrap.appendChild(makeSVGCloud(c.w,c.h));
+  cloudLayer.appendChild(wrap);
+});
+
+// ══ HOA HOẠT HÌNH RƠI ══
+const flowerSVGs=[
+  // Hoa 5 cánh hồng
+  `<svg width="28" height="28" viewBox="0 0 28 28"><g transform="translate(14,14)">
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="#FFB7C5" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="#FFCCD5" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="#FFB7C5" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="#FFCCD5" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="#FFB7C5" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="3.5" fill="#FFE066"/>
+  </g></svg>`,
+  // Hoa anh đào
+  `<svg width="24" height="24" viewBox="0 0 24 24"><g transform="translate(12,12)">
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFD1DC" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFC0CB" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFD1DC" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFC0CB" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFD1DC" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-5" rx="3" ry="4.5" fill="#FFC0CB" transform="rotate(300)"/>
+    <circle cx="0" cy="0" r="3" fill="#FFFDE7"/>
+  </g></svg>`,
+  // Hoa nhỏ trắng
+  `<svg width="20" height="20" viewBox="0 0 20 20"><g transform="translate(10,10)">
+    <ellipse cx="0" cy="-4" rx="2.5" ry="4" fill="white" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-4" rx="2.5" ry="4" fill="white" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-4" rx="2.5" ry="4" fill="white" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-4" rx="2.5" ry="4" fill="white" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-4" rx="2.5" ry="4" fill="white" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="2.5" fill="#FFE566"/>
+  </g></svg>`,
+  // Trái tim
+  `<svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 15 C9 15 2 10 2 5.5 A3.5 3.5 0 0 1 9 4.8 A3.5 3.5 0 0 1 16 5.5 C16 10 9 15 9 15Z" fill="#FF8FAB"/></svg>`,
+];
+
+for(let i=0;i<22;i++){
+  const el=document.createElement('div');
+  el.className='flower';
+  el.innerHTML=flowerSVGs[Math.floor(Math.random()*flowerSVGs.length)];
+  el.style.cssText=`
+    left:${Math.random()*100}vw;
+    animation-duration:${7+Math.random()*11}s;
+    animation-delay:${Math.random()*20}s;
+    transform-origin:center;
+    opacity:0;
+  `;
   document.body.appendChild(el);
 }
+
+// ══ MUSIC ══
 const audio=document.getElementById('bgm'),btn=document.getElementById('mbtn'),tip=document.getElementById('mtip'),note=document.getElementById('mnote');
 let on=false;audio.volume=0.4;
 function showTip(m,ms=3200){tip.textContent=m;tip.classList.add('show');setTimeout(()=>tip.classList.remove('show'),ms)}
